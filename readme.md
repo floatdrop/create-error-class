@@ -15,7 +15,7 @@ $ npm install --save create-error-class
 ```js
 var createErrorClass = require('create-error-class');
 
-var HTTPError = createErrorClass('NotFoundError', function () {
+var HTTPError = createErrorClass('HTTPError', function () {
 	this.message = 'Status code is ' + this.statusCode;
 });
 
