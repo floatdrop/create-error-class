@@ -1,30 +1,20 @@
 'use strict';
 
-var util = require('util');
-var objectAssign = require('object-assign');
+var inherits = require('inherits');
+var captureStackTrace = require('capture-stack-trace');
 
-module.exports = function createErrorClass(className, constructor) {
+module.exports = function createErrorClass(className, setup) {
 	if (typeof className !== 'string') {
 		throw new TypeError('Expected className to be a string');
 	}
 
-	constructor = constructor || function () {};
+	setup = setup || function () {};
 
-	function CustomError(message, props) {
-		Error.captureStackTrace(this, this.constructor);
-		this.name = className;
+	/* jshint evil:true */
+	var ErrorClass = eval('(function ' + className + '() { captureStackTrace(this, this.constructor); setup.apply(this, arguments); })');
 
-		if (typeof message !== 'string') {
-			props = message;
-			message = undefined;
-		}
+	inherits(ErrorClass, Error);
+	ErrorClass.prototype.name = className;
 
-		this.message = message;
-		objectAssign(this, props);
-		constructor.call(this);
-	}
-
-	util.inherits(CustomError, Error);
-
-	return CustomError;
+	return ErrorClass;
 };

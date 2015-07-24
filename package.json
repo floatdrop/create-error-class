@@ -22,7 +22,8 @@
     ""
   ],
   "dependencies": {
-    "object-assign": "^3.0.0"
+    "capture-stack-trace": "^1.0.0",
+    "inherits": "^2.0.1"
   },
   "devDependencies": {
     "mocha": "*"

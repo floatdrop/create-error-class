@@ -15,8 +15,8 @@ $ npm install --save create-error-class
 ```js
 var createErrorClass = require('create-error-class');
 
-var HTTPError = createErrorClass('HTTPError', function () {
-	this.message = 'Status code is ' + this.statusCode;
+var HTTPError = createErrorClass('HTTPError', function (props) {
+	this.message = 'Status code is ' + props.statusCode;
 });
 
 throw new HTTPError({statusCode: 404});
@@ -25,9 +25,9 @@ throw new HTTPError({statusCode: 404});
 
 ## API
 
-### createErrorClass(className, [constructor])
+### createErrorClass(className, [setup])
 
-Return constructor of Errors with `className`. Constructor accepts optional message and props, that will be assigned to Error.
+Return constructor of Errors with `className`.
 
 #### className
 
@@ -36,10 +36,10 @@ Type: `string`
 
 Class name of Error Object.
 
-#### constructor
+#### setup
 Type: `function`
 
-Function, that will be called after each Error object is created from constructor with context of Error object.
+Setup function, that will be called after each Error object is created from constructor with context of Error object.
 
 ## License
 
