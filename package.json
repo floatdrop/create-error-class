@@ -1,6 +1,6 @@
 {
   "name": "create-error-class",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Create Error classes",
   "license": "MIT",
   "repository": "floatdrop/create-error-class",
