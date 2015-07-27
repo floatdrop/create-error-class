@@ -27,3 +27,9 @@ it('should work', function () {
 		assert.strictEqual(err.stack.split('\n')[1].indexOf('doSomethingBad'), 7, 'The first stack frame should be the function where the error was thrown.');
 	}
 });
+
+it('should throw on invalid className', function () {
+	assert.throws(function () {
+		createErrorClass('something(){}); console.error("Run, you fools!"); (function myError');
+	}, /className contains invalid characters/);
+});

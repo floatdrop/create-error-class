@@ -34,7 +34,7 @@ Return constructor of Errors with `className`.
 *Required*  
 Type: `string`
 
-Class name of Error Object.
+Class name of Error Object. Should contain characters, validated by this regex: `[^0-9a-zA-Z_$]`.
 
 #### setup
 Type: `function`

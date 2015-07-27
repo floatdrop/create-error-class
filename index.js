@@ -8,6 +8,10 @@ module.exports = function createErrorClass(className, setup) {
 		throw new TypeError('Expected className to be a string');
 	}
 
+	if (/[^0-9a-zA-Z_$]/.test(className)) {
+		throw new Error('className contains invalid characters');
+	}
+
 	setup = setup || function () {};
 
 	/* jshint evil:true */
