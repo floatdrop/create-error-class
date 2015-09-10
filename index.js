@@ -12,7 +12,9 @@ module.exports = function createErrorClass(className, setup) {
 		throw new Error('className contains invalid characters');
 	}
 
-	setup = setup || function () {};
+	setup = setup || function (message) {
+		this.message = message;
+	};
 
 	/* jshint evil:true */
 	var ErrorClass = eval('(function ' + className + '() { captureStackTrace(this, this.constructor); setup.apply(this, arguments); })');
