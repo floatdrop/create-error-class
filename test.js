@@ -33,3 +33,13 @@ it('should throw on invalid className', function () {
 		createErrorClass('something(){}); console.error("Run, you fools!"); (function myError');
 	}, /className contains invalid characters/);
 });
+
+it('should capture a message if setup is not defined', function () {
+	var NoSetupError = createErrorClass('NoSetupError');
+
+	try {
+		throw new NoSetupError('Oh noes!');
+	} catch (err) {
+		assert.strictEqual(err.message, 'Oh noes!');
+	}
+});
