@@ -41,6 +41,14 @@ Type: `function`
 
 Setup function, that will be called after each Error object is created from constructor with context of Error object.
 
+By default `setup` function sets `this.message` as first argument:
+
+```js
+var MyError = createErrorClass('MyError');
+
+new MyError('Something gone wrong!').message; // => 'Something gone wrong!'
+```
+
 ## License
 
 MIT © [Vsevolod Strukchinsky](http://github.com/floatdrop)
