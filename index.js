@@ -1,7 +1,17 @@
 'use strict';
-
-var inherits = require('inherits');
 var captureStackTrace = require('capture-stack-trace');
+
+function inherits(ctor, superCtor) {
+	ctor.super_ = superCtor;
+	ctor.prototype = Object.create(superCtor.prototype, {
+		constructor: {
+			value: ctor,
+			enumerable: false,
+			writable: true,
+			configurable: true
+		}
+	});
+}
 
 module.exports = function createErrorClass(className, setup) {
 	if (typeof className !== 'string') {
