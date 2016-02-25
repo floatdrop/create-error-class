@@ -39,7 +39,6 @@ module.exports = function createErrorClass(className, setup) {
 	};
 
 	inherits(ErrorClass, Error);
-	ErrorClass.prototype.name = className;
 
 	return ErrorClass;
 };
