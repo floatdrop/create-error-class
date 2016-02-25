@@ -26,8 +26,17 @@ module.exports = function createErrorClass(className, setup) {
 		this.message = message;
 	};
 
-	/* jshint evil:true */
-	var ErrorClass = eval('(function ' + className + '() { captureStackTrace(this, this.constructor); setup.apply(this, arguments); })');
+	var ErrorClass = function () {
+		Object.defineProperty(this, 'name', {
+			configurable: true,
+			value: className,
+			writable: true
+		});
+
+		captureStackTrace(this, this.constructor);
+
+		setup.apply(this, arguments);
+	};
 
 	inherits(ErrorClass, Error);
 	ErrorClass.prototype.name = className;
