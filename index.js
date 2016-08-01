@@ -26,17 +26,16 @@ module.exports = function createErrorClass(className, setup) {
 		this.message = message;
 	};
 
-	var ErrorClass = function () {
-		Object.defineProperty(this, 'name', {
-			configurable: true,
-			value: className,
-			writable: true
-		});
-
+	function ErrorClass() {
 		captureStackTrace(this, this.constructor);
-
 		setup.apply(this, arguments);
 	};
+	
+	Object.defineProperty(ErrorClass, 'name', {
+		configurable: true,
+		value: className,
+		writable: true
+	});
 
 	inherits(ErrorClass, Error);
 
